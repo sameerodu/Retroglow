@@ -22,8 +22,7 @@ public final class RetroGlowSound {
 
         AUDIO_EXECUTOR.execute(() -> {
 
-            short[] sound =
-                    createDetent();
+            short[] sound = createDetent();
 
             play(sound);
         });
