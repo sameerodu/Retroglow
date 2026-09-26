@@ -1,160 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/retroglow_root"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/retroglow_body"
-    android:paddingStart="10dp"
-    android:paddingEnd="10dp"
-    android:paddingTop="6dp"
-    android:paddingBottom="6dp">
+    android:layout_height="wrap_content"
+    android:padding="8dp">
 
-    <!-- Visual dim-side icon -->
-    <TextView
-        android:id="@+id/retroglow_dim_icon"
-        android:layout_width="30dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="start|center_vertical"
-        android:gravity="center"
-        android:includeFontPadding="false"
-        android:text="☼"
-        android:textColor="#756B5E"
-        android:textSize="20sp" />
-
-    <!-- Recessed physical track -->
-    <TextView
-        android:id="@+id/retroglow_track"
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:layout_gravity="center_vertical"
-        android:layout_marginStart="34dp"
-        android:layout_marginEnd="34dp"
-        android:background="@drawable/retroglow_track"
-        android:text="" />
-
-    <!-- Amber illumination -->
-    <TextView
-        android:id="@+id/retroglow_light"
-        android:layout_width="8dp"
-        android:layout_height="8dp"
-        android:layout_gravity="start|center_vertical"
-        android:layout_marginStart="39dp"
-        android:background="@drawable/retroglow_amber"
-        android:text="" />
-
-    <!-- Physical knob -->
-    <TextView
-        android:id="@+id/retroglow_knob"
-        android:layout_width="42dp"
-        android:layout_height="42dp"
-        android:layout_gravity="center_vertical"
-        android:layout_marginStart="34dp"
-        android:background="@drawable/retroglow_knob"
-        android:text="" />
-
-    <!-- Eight invisible touch zones -->
+    <!-- Main retro-metal housing -->
     <LinearLayout
-        android:id="@+id/retroglow_touch_zones"
+        android:id="@+id/retroglow_housing"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="28dp"
-        android:layout_marginEnd="28dp"
-        android:orientation="horizontal">
+        android:layout_height="72dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="14dp"
+        android:paddingEnd="14dp"
+        android:background="@drawable/retroglow_housing">
 
-        <TextView
-            android:id="@+id/retroglow_zone_0"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:clickable="true"
-            android:focusable="true"
-            android:text="" />
+        <!-- Low-brightness sun -->
+        <ImageView
+            android:id="@+id/retroglow_sun_low"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="10dp"
+            android:contentDescription="@string/retroglow_low_brightness"
+            android:src="@drawable/retroglow_sun_low"
+            android:scaleType="centerInside" />
 
-        <TextView
-            android:id="@+id/retroglow_zone_15"
+        <!-- Slider cavity -->
+        <FrameLayout
+            android:id="@+id/retroglow_track"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="38dp"
             android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:clickable="true"
-            android:focusable="true"
-            android:text="" />
+            android:background="@drawable/retroglow_track">
 
-        <TextView
-            android:id="@+id/retroglow_zone_30"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:clickable="true"
-            android:focusable="true"
-            android:text="" />
+            <!-- Amber illuminated portion -->
+            <View
+                android:id="@+id/retroglow_fill"
+                android:layout_width="50%"
+                android:layout_height="match_parent"
+                android:layout_gravity="start|center_vertical"
+                android:background="@drawable/retroglow_fill" />
 
-        <TextView
-            android:id="@+id/retroglow_zone_45"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:clickable="true"
-            android:focusable="true"
-            android:text="" />
+            <!-- Eight large touch zones -->
+            <LinearLayout
+                android:id="@+id/retroglow_touch_zones"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/retroglow_zone_60"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:clickable="true"
-            android:focusable="true"
-            android:text="" />
+                <View
+                    android:id="@+id/retroglow_zone_0"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
 
-        <TextView
-            android:id="@+id/retroglow_zone_75"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:clickable="true"
-            android:focusable="true"
-            android:text="" />
+                <View
+                    android:id="@+id/retroglow_zone_15"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
 
-        <TextView
-            android:id="@+id/retroglow_zone_90"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:clickable="true"
-            android:focusable="true"
-            android:text="" />
+                <View
+                    android:id="@+id/retroglow_zone_30"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
 
-        <TextView
-            android:id="@+id/retroglow_zone_100"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@android:color/transparent"
-            android:clickable="true"
-            android:focusable="true"
-            android:text="" />
+                <View
+                    android:id="@+id/retroglow_zone_45"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <View
+                    android:id="@+id/retroglow_zone_60"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <View
+                    android:id="@+id/retroglow_zone_75"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <View
+                    android:id="@+id/retroglow_zone_90"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <View
+                    android:id="@+id/retroglow_zone_100"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+            </LinearLayout>
+
+            <!-- Physical-looking selector knob -->
+            <ImageView
+                android:id="@+id/retroglow_knob"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                android:layout_gravity="center_vertical"
+                android:contentDescription="@string/retroglow_brightness_control"
+                android:src="@drawable/retroglow_knob"
+                android:scaleType="centerInside" />
+
+        </FrameLayout>
+
+        <!-- High-brightness sun -->
+        <ImageView
+            android:id="@+id/retroglow_sun_high"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:contentDescription="@string/retroglow_high_brightness"
+            android:src="@drawable/retroglow_sun_high"
+            android:scaleType="centerInside" />
 
     </LinearLayout>
-
-    <!-- Visual bright-side icon -->
-    <TextView
-        android:id="@+id/retroglow_bright_icon"
-        android:layout_width="30dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="end|center_vertical"
-        android:gravity="center"
-        android:includeFontPadding="false"
-        android:text="☼"
-        android:textColor="#E5D8C4"
-        android:textSize="20sp" />
 
 </FrameLayout>
