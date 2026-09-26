@@ -2,73 +2,86 @@
 
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Deep contact shadow -->
-    <item
-        android:left="1dp"
-        android:top="3dp"
-        android:right="1dp"
-        android:bottom="0dp">
-
-        <shape android:shape="oval">
-
-            <solid android:color="#17130F" />
-
-        </shape>
-
-    </item>
-
     <!-- Dark outer metal rim -->
-    <item
-        android:left="0dp"
-        android:top="0dp"
-        android:right="0dp"
-        android:bottom="3dp">
-
+    <item>
         <shape android:shape="oval">
 
             <gradient
-                android:angle="315"
-                android:startColor="#514A42"
-                android:centerColor="#D8CCBB"
-                android:endColor="#74695C" />
+                android:type="radial"
+                android:gradientRadius="24dp"
+                android:centerX="35%"
+                android:centerY="28%"
+                android:startColor="#D9C8A9"
+                android:centerColor="#766653"
+                android:endColor="#25211D" />
 
             <stroke
-                android:width="1dp"
-                android:color="#EFE4D3" />
+                android:width="2dp"
+                android:color="#171411" />
 
         </shape>
-
     </item>
 
-    <!-- Inner metal surface -->
+    <!-- Raised inner face -->
     <item
         android:left="4dp"
         android:top="4dp"
         android:right="4dp"
-        android:bottom="7dp">
+        android:bottom="4dp">
 
         <shape android:shape="oval">
 
             <gradient
-                android:angle="315"
-                android:startColor="#F4EBDD"
-                android:centerColor="#BEB2A2"
-                android:endColor="#73695D" />
+                android:type="radial"
+                android:gradientRadius="19dp"
+                android:centerX="32%"
+                android:centerY="25%"
+                android:startColor="#F1E1C2"
+                android:centerColor="#B29B79"
+                android:endColor="#5C4D3B" />
+
+            <stroke
+                android:width="1dp"
+                android:color="#E4D2AF" />
 
         </shape>
 
     </item>
 
-    <!-- Small upper highlight -->
+    <!-- Central dark indicator -->
     <item
-        android:left="10dp"
-        android:top="8dp"
-        android:right="25dp"
-        android:bottom="23dp">
+        android:left="17dp"
+        android:top="17dp"
+        android:right="17dp"
+        android:bottom="17dp">
 
         <shape android:shape="oval">
 
-            <solid android:color="#FFF9EE" />
+            <solid android:color="#30271F" />
+
+            <stroke
+                android:width="1dp"
+                android:color="#0F0D0B" />
+
+        </shape>
+
+    </item>
+
+    <!-- Small amber indicator mark -->
+    <item
+        android:left="21dp"
+        android:top="8dp"
+        android:right="21dp"
+        android:bottom="25dp">
+
+        <shape android:shape="rectangle">
+
+            <corners android:radius="2dp" />
+
+            <gradient
+                android:angle="270"
+                android:startColor="#FFE29A"
+                android:endColor="#D8750A" />
 
         </shape>
 
