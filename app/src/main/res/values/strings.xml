@@ -4,6 +4,8 @@
 
     <string name="app_name">RetroGlow</string>
 
+    <string name="retroglow_description">Retro-style brightness control widget</string>
+
     <string name="retroglow_low_brightness">Low brightness</string>
 
     <string name="retroglow_high_brightness">High brightness</string>
