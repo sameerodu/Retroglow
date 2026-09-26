@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Deep recessed cavity -->
+    <item
+        android:left="0dp"
+        android:top="2dp"
+        android:right="0dp"
+        android:bottom="2dp">
+
+        <shape android:shape="rectangle">
+
+            <corners android:radius="12dp" />
+
+            <gradient
+                android:angle="270"
+                android:startColor="#16120F"
+                android:centerColor="#30261D"
+                android:endColor="#120F0C" />
+
+        </shape>
+
+    </item>
+
+    <!-- Upper inner edge -->
+    <item
+        android:left="1dp"
+        android:top="1dp"
+        android:right="1dp"
+        android:bottom="1dp">
+
+        <shape android:shape="rectangle">
+
+            <corners android:radius="11dp" />
+
+            <stroke
+                android:width="1dp"
+                android:color="#796B5A" />
+
+        </shape>
+
+    </item>
+
+</layer-list>
