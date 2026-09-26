@@ -36,11 +36,11 @@ public class RetroGlowWidget extends AppWidgetProvider {
             int[] widgetIds) {
 
         for (int widgetId : widgetIds) {
+
             updateWidget(
                     context,
                     manager,
-                    widgetId,
-                    getSavedLevel(context)
+                    widgetId
             );
         }
     }
@@ -48,8 +48,7 @@ public class RetroGlowWidget extends AppWidgetProvider {
     private static void updateWidget(
             Context context,
             AppWidgetManager manager,
-            int widgetId,
-            int brightness) {
+            int widgetId) {
 
         RemoteViews views =
                 new RemoteViews(
@@ -94,11 +93,6 @@ public class RetroGlowWidget extends AppWidgetProvider {
             );
         }
 
-        /*
-         * For now the physical artwork remains static.
-         * The brightness state is stored and the actual
-         * visual-state system will be added separately.
-         */
         manager.updateAppWidget(
                 widgetId,
                 views
@@ -137,19 +131,15 @@ public class RetroGlowWidget extends AppWidgetProvider {
                 brightness
         );
 
-        RetroGlowSound.playDetent(
-                new RetroGlowSound.ContextHolder()
-        );
+        RetroGlowSound.playDetent();
 
         updateAllWidgets(
-                context,
-                brightness
+                context
         );
     }
 
     private static void updateAllWidgets(
-            Context context,
-            int brightness) {
+            Context context) {
 
         AppWidgetManager manager =
                 AppWidgetManager.getInstance(
@@ -172,8 +162,7 @@ public class RetroGlowWidget extends AppWidgetProvider {
             updateWidget(
                     context,
                     manager,
-                    widgetId,
-                    brightness
+                    widgetId
             );
         }
     }
@@ -183,6 +172,7 @@ public class RetroGlowWidget extends AppWidgetProvider {
             int percentage) {
 
         if (!Settings.System.canWrite(context)) {
+
             return;
         }
 
@@ -198,20 +188,6 @@ public class RetroGlowWidget extends AppWidgetProvider {
                 Settings.System.SCREEN_BRIGHTNESS,
                 value
         );
-    }
-
-    private static int getSavedLevel(
-            Context context) {
-
-        return context
-                .getSharedPreferences(
-                        "retroglow",
-                        Context.MODE_PRIVATE
-                )
-                .getInt(
-                        "brightness",
-                        60
-                );
     }
 
     private static void saveLevel(
