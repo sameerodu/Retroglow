@@ -6,13 +6,13 @@ import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.net.Uri;
 import android.provider.Settings;
-import android.view.View;
 import android.widget.RemoteViews;
 
 public class RetroGlowWidget extends AppWidgetProvider {
+
+    public static final String ACTION_SET_BRIGHTNESS =
+            "com.retroglow.SET_BRIGHTNESS";
 
     private static final int[] LEVELS = {
             0, 15, 30, 45, 60, 75, 90, 100
@@ -29,20 +29,17 @@ public class RetroGlowWidget extends AppWidgetProvider {
             R.id.retroglow_zone_100
     };
 
-    private static final int TRACK_START_DP = 39;
-    private static final int TRACK_END_DP = 39;
-
     @Override
     public void onUpdate(
             Context context,
-            AppWidgetManager appWidgetManager,
-            int[] appWidgetIds) {
+            AppWidgetManager manager,
+            int[] widgetIds) {
 
-        for (int appWidgetId : appWidgetIds) {
+        for (int widgetId : widgetIds) {
             updateWidget(
                     context,
-                    appWidgetManager,
-                    appWidgetId,
+                    manager,
+                    widgetId,
                     getSavedLevel(context)
             );
         }
@@ -52,7 +49,7 @@ public class RetroGlowWidget extends AppWidgetProvider {
             Context context,
             AppWidgetManager manager,
             int widgetId,
-            int level) {
+            int brightness) {
 
         RemoteViews views =
                 new RemoteViews(
@@ -69,7 +66,7 @@ public class RetroGlowWidget extends AppWidgetProvider {
                     );
 
             intent.setAction(
-                    "com.retroglow.SET_BRIGHTNESS"
+                    ACTION_SET_BRIGHTNESS
             );
 
             intent.putExtra(
@@ -97,11 +94,11 @@ public class RetroGlowWidget extends AppWidgetProvider {
             );
         }
 
-        updateVisualState(
-                views,
-                level
-        );
-
+        /*
+         * For now the physical artwork remains static.
+         * The brightness state is stored and the actual
+         * visual-state system will be added separately.
+         */
         manager.updateAppWidget(
                 widgetId,
                 views
@@ -118,8 +115,8 @@ public class RetroGlowWidget extends AppWidgetProvider {
                 intent
         );
 
-        if (!"com.retroglow.SET_BRIGHTNESS"
-                .equals(intent.getAction())) {
+        if (!ACTION_SET_BRIGHTNESS.equals(
+                intent.getAction())) {
 
             return;
         }
@@ -127,13 +124,7 @@ public class RetroGlowWidget extends AppWidgetProvider {
         int brightness =
                 intent.getIntExtra(
                         "brightness",
-                        50
-                );
-
-        int widgetId =
-                intent.getIntExtra(
-                        "widget_id",
-                        -1
+                        60
                 );
 
         setBrightness(
@@ -146,27 +137,14 @@ public class RetroGlowWidget extends AppWidgetProvider {
                 brightness
         );
 
-        if (widgetId != -1) {
+        RetroGlowSound.playDetent(
+                new RetroGlowSound.ContextHolder()
+        );
 
-            AppWidgetManager manager =
-                    AppWidgetManager.getInstance(
-                            context
-                    );
-
-            updateWidget(
-                    context,
-                    manager,
-                    widgetId,
-                    brightness
-            );
-
-        } else {
-
-            updateAllWidgets(
-                    context,
-                    brightness
-            );
-        }
+        updateAllWidgets(
+                context,
+                brightness
+        );
     }
 
     private static void updateAllWidgets(
@@ -184,17 +162,17 @@ public class RetroGlowWidget extends AppWidgetProvider {
                         RetroGlowWidget.class
                 );
 
-        int[] ids =
+        int[] widgetIds =
                 manager.getAppWidgetIds(
                         componentName
                 );
 
-        for (int id : ids) {
+        for (int widgetId : widgetIds) {
 
             updateWidget(
                     context,
                     manager,
-                    id,
+                    widgetId,
                     brightness
             );
         }
@@ -205,25 +183,6 @@ public class RetroGlowWidget extends AppWidgetProvider {
             int percentage) {
 
         if (!Settings.System.canWrite(context)) {
-
-            Intent intent =
-                    new Intent(
-                            Settings.ACTION_MANAGE_WRITE_SETTINGS
-                    );
-
-            intent.setData(
-                    Uri.parse(
-                            "package:"
-                                    + context.getPackageName()
-                    )
-            );
-
-            intent.addFlags(
-                    Intent.FLAG_ACTIVITY_NEW_TASK
-            );
-
-            context.startActivity(intent);
-
             return;
         }
 
@@ -238,83 +197,6 @@ public class RetroGlowWidget extends AppWidgetProvider {
                 context.getContentResolver(),
                 Settings.System.SCREEN_BRIGHTNESS,
                 value
-        );
-    }
-
-    private static void updateVisualState(
-            RemoteViews views,
-            int brightness) {
-
-        int index = 0;
-
-        for (int i = 0; i < LEVELS.length; i++) {
-
-            if (brightness >= LEVELS[i]) {
-                index = i;
-            }
-        }
-
-        float position =
-                index
-                        / (float)
-                        (LEVELS.length - 1);
-
-        int trackWidthDp = 180;
-
-        int knobWidthDp = 42;
-
-        int usableWidthDp =
-                trackWidthDp
-                        - knobWidthDp;
-
-        int knobOffsetDp =
-                Math.round(
-                        usableWidthDp
-                                * position
-                );
-
-        views.setViewPadding(
-                R.id.retroglow_knob,
-                0,
-                0,
-                0,
-                0
-        );
-
-        views.setInt(
-                R.id.retroglow_knob,
-                "setTranslationX",
-                dpToPx(
-                        position,
-                        usableWidthDp
-                )
-        );
-
-        int amberWidth =
-                Math.max(
-                        8,
-                        Math.round(
-                                trackWidthDp
-                                        * position
-                        )
-                );
-
-        views.setViewLayoutWidth(
-                R.id.retroglow_light,
-                dpToPx(
-                        amberWidth,
-                        amberWidth
-                )
-        );
-    }
-
-    private static int dpToPx(
-            float position,
-            int widthDp) {
-
-        return Math.round(
-                position
-                        * widthDp
         );
     }
 
