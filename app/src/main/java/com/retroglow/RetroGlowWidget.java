@@ -29,6 +29,17 @@ public class RetroGlowWidget extends AppWidgetProvider {
             R.id.retroglow_zone_100
     };
 
+    private static final int[] KNOB_POSITIONS = {
+            0,
+            14,
+            29,
+            43,
+            57,
+            71,
+            86,
+            100
+    };
+
     @Override
     public void onUpdate(
             Context context,
@@ -36,7 +47,6 @@ public class RetroGlowWidget extends AppWidgetProvider {
             int[] widgetIds) {
 
         for (int widgetId : widgetIds) {
-
             updateWidget(
                     context,
                     manager,
@@ -55,6 +65,32 @@ public class RetroGlowWidget extends AppWidgetProvider {
                         context.getPackageName(),
                         R.layout.retroglow_widget
                 );
+
+        int brightness =
+                context
+                        .getSharedPreferences(
+                                "retroglow",
+                                Context.MODE_PRIVATE
+                        )
+                        .getInt(
+                                "brightness",
+                                60
+                        );
+
+        int selectedIndex =
+                findClosestLevel(brightness);
+
+        /*
+         * RemoteViews cannot freely reposition a child by percentage.
+         * We therefore use eight predefined visual states.
+         *
+         * The knob and illuminated track are updated together,
+         * so the visual state always corresponds to the brightness.
+         */
+        applyVisualState(
+                views,
+                selectedIndex
+        );
 
         for (int i = 0; i < ZONE_IDS.length; i++) {
 
@@ -97,6 +133,101 @@ public class RetroGlowWidget extends AppWidgetProvider {
                 widgetId,
                 views
         );
+    }
+
+    private static void applyVisualState(
+            RemoteViews views,
+            int selectedIndex) {
+
+        /*
+         * The fill is represented by eight predefined widths.
+         * These values correspond to the eight brightness levels.
+         */
+        int[] fillWidths = {
+                0,
+                14,
+                29,
+                43,
+                57,
+                71,
+                86,
+                100
+        };
+
+        int fillPercent =
+                fillWidths[selectedIndex];
+
+        views.setViewVisibility(
+                R.id.retroglow_knob,
+                android.view.View.VISIBLE
+        );
+
+        /*
+         * We use the knob's translationX to move it across
+         * the track. Android RemoteViews supports translation
+         * properties on supported launcher implementations.
+         */
+        float translation =
+                (fillPercent - 50) * 1.0f;
+
+        views.setFloat(
+                R.id.retroglow_knob,
+                "setTranslationX",
+                translation
+        );
+
+        /*
+         * Scale the fill horizontally from the left edge.
+         * This gives the appearance of a physical illuminated
+         * track following the selected knob position.
+         */
+        float scale =
+                fillPercent / 100.0f;
+
+        views.setFloat(
+                R.id.retroglow_fill,
+                "setScaleX",
+                scale
+        );
+
+        views.setViewVisibility(
+                R.id.retroglow_fill,
+                fillPercent == 0
+                        ? android.view.View.INVISIBLE
+                        : android.view.View.VISIBLE
+        );
+    }
+
+    private static int findClosestLevel(
+            int brightness) {
+
+        int closestIndex = 0;
+
+        int smallestDifference =
+                Math.abs(
+                        brightness
+                                - LEVELS[0]
+                );
+
+        for (int i = 1; i < LEVELS.length; i++) {
+
+            int difference =
+                    Math.abs(
+                            brightness
+                                    - LEVELS[i]
+                    );
+
+            if (difference < smallestDifference) {
+
+                smallestDifference =
+                        difference;
+
+                closestIndex =
+                        i;
+            }
+        }
+
+        return closestIndex;
     }
 
     @Override
@@ -172,7 +303,6 @@ public class RetroGlowWidget extends AppWidgetProvider {
             int percentage) {
 
         if (!Settings.System.canWrite(context)) {
-
             return;
         }
 
