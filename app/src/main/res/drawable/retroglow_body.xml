@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Deep shadow beneath the hardware body -->
+    <item
+        android:left="0dp"
+        android:top="2dp"
+        android:right="0dp"
+        android:bottom="3dp">
+
+        <shape android:shape="rectangle">
+
+            <corners android:radius="32dp" />
+
+            <solid android:color="#120F0C" />
+
+        </shape>
+
+    </item>
+
+    <!-- Main warm metal housing -->
+    <item
+        android:left="0dp"
+        android:top="0dp"
+        android:right="0dp"
+        android:bottom="2dp">
+
+        <shape android:shape="rectangle">
+
+            <corners android:radius="32dp" />
+
+            <gradient
+                android:angle="270"
+                android:startColor="#6F6558"
+                android:centerColor="#D8C9B3"
+                android:endColor="#817565" />
+
+            <stroke
+                android:width="1dp"
+                android:color="#F1E6D4" />
+
+        </shape>
+
+    </item>
+
+    <!-- Subtle inner bevel -->
+    <item
+        android:left="2dp"
+        android:top="2dp"
+        android:right="2dp"
+        android:bottom="4dp">
+
+        <shape android:shape="rectangle">
+
+            <corners android:radius="30dp" />
+
+            <stroke
+                android:width="1dp"
+                android:color="#9B8D7B" />
+
+        </shape>
+
+    </item>
+
+</layer-list>
