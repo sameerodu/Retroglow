@@ -11,7 +11,7 @@
     android:paddingTop="6dp"
     android:paddingBottom="6dp">
 
-    <!-- Dim end -->
+    <!-- Visual dim-side icon -->
     <TextView
         android:id="@+id/retroglow_dim_icon"
         android:layout_width="30dp"
@@ -23,7 +23,7 @@
         android:textColor="#756B5E"
         android:textSize="20sp" />
 
-    <!-- Recessed track -->
+    <!-- Recessed physical track -->
     <TextView
         android:id="@+id/retroglow_track"
         android:layout_width="match_parent"
@@ -54,7 +54,98 @@
         android:background="@drawable/retroglow_knob"
         android:text="" />
 
-    <!-- Bright end -->
+    <!-- Eight invisible touch zones -->
+    <LinearLayout
+        android:id="@+id/retroglow_touch_zones"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="28dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/retroglow_zone_0"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/retroglow_zone_15"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/retroglow_zone_30"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/retroglow_zone_45"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/retroglow_zone_60"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/retroglow_zone_75"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/retroglow_zone_90"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/retroglow_zone_100"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:clickable="true"
+            android:focusable="true"
+            android:text="" />
+
+    </LinearLayout>
+
+    <!-- Visual bright-side icon -->
     <TextView
         android:id="@+id/retroglow_bright_icon"
         android:layout_width="30dp"
