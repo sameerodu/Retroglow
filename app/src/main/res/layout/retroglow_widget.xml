@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/retroglow_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/retroglow_body"
+    android:paddingStart="10dp"
+    android:paddingEnd="10dp"
+    android:paddingTop="6dp"
+    android:paddingBottom="6dp">
+
+    <!-- Dim end -->
+    <TextView
+        android:id="@+id/retroglow_dim_icon"
+        android:layout_width="30dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start|center_vertical"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:text="☼"
+        android:textColor="#756B5E"
+        android:textSize="20sp" />
+
+    <!-- Recessed track -->
+    <TextView
+        android:id="@+id/retroglow_track"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="34dp"
+        android:layout_marginEnd="34dp"
+        android:background="@drawable/retroglow_track"
+        android:text="" />
+
+    <!-- Amber illumination -->
+    <TextView
+        android:id="@+id/retroglow_light"
+        android:layout_width="8dp"
+        android:layout_height="8dp"
+        android:layout_gravity="start|center_vertical"
+        android:layout_marginStart="39dp"
+        android:background="@drawable/retroglow_amber"
+        android:text="" />
+
+    <!-- Physical knob -->
+    <TextView
+        android:id="@+id/retroglow_knob"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="34dp"
+        android:background="@drawable/retroglow_knob"
+        android:text="" />
+
+    <!-- Bright end -->
+    <TextView
+        android:id="@+id/retroglow_bright_icon"
+        android:layout_width="30dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="end|center_vertical"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:text="☼"
+        android:textColor="#E5D8C4"
+        android:textSize="20sp" />
+
+</FrameLayout>
