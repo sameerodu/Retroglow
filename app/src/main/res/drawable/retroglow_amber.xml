@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Warm outer glow -->
+    <item
+        android:left="0dp"
+        android:top="0dp"
+        android:right="0dp"
+        android:bottom="0dp">
+
+        <shape android:shape="rectangle">
+
+            <corners android:radius="6dp" />
+
+            <solid android:color="#7A3E08" />
+
+        </shape>
+
+    </item>
+
+    <!-- Illuminated core -->
+    <item
+        android:left="1dp"
+        android:top="1dp"
+        android:right="1dp"
+        android:bottom="1dp">
+
+        <shape android:shape="rectangle">
+
+            <corners android:radius="5dp" />
+
+            <gradient
+                android:angle="270"
+                android:startColor="#A95508"
+                android:centerColor="#F0A52C"
+                android:endColor="#B7610B" />
+
+        </shape>
+
+    </item>
+
+    <!-- Hot center highlight -->
+    <item
+        android:left="3dp"
+        android:top="2dp"
+        android:right="3dp"
+        android:bottom="4dp">
+
+        <shape android:shape="rectangle">
+
+            <corners android:radius="4dp" />
+
+            <solid android:color="#E89A27" />
+
+        </shape>
+
+    </item>
+
+</layer-list>
