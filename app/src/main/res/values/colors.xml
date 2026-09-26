@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <color name="retroglow_transparent">#00000000</color>
+
+    <color name="retroglow_amber_dark">#7A3E08</color>
+
+    <color name="retroglow_amber">#E89A27</color>
+
+    <color name="retroglow_amber_bright">#F0A52C</color>
+
+</resources>
