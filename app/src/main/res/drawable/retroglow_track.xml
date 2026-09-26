@@ -2,41 +2,62 @@
 
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- Outer metallic lip -->
+    <item>
+        <shape android:shape="rectangle">
+
+            <corners android:radius="20dp" />
+
+            <solid android:color="#302820" />
+
+            <stroke
+                android:width="1dp"
+                android:color="#75624B" />
+
+        </shape>
+    </item>
+
     <!-- Deep recessed cavity -->
     <item
-        android:left="0dp"
+        android:left="2dp"
         android:top="2dp"
-        android:right="0dp"
+        android:right="2dp"
         android:bottom="2dp">
 
         <shape android:shape="rectangle">
 
-            <corners android:radius="12dp" />
+            <corners android:radius="18dp" />
 
             <gradient
                 android:angle="270"
-                android:startColor="#16120F"
-                android:centerColor="#30261D"
-                android:endColor="#120F0C" />
+                android:startColor="#0B0A09"
+                android:centerColor="#211A14"
+                android:endColor="#080706" />
+
+            <stroke
+                android:width="1dp"
+                android:color="#17120F" />
 
         </shape>
 
     </item>
 
-    <!-- Upper inner edge -->
+    <!-- Soft inner highlight -->
     <item
-        android:left="1dp"
-        android:top="1dp"
-        android:right="1dp"
-        android:bottom="1dp">
+        android:left="4dp"
+        android:top="4dp"
+        android:right="4dp"
+        android:bottom="4dp">
 
         <shape android:shape="rectangle">
 
-            <corners android:radius="11dp" />
+            <corners android:radius="16dp" />
+
+            <solid android:color="#120E0B" />
 
             <stroke
                 android:width="1dp"
-                android:color="#796B5A" />
+                android:color="#33271D" />
 
         </shape>
 
