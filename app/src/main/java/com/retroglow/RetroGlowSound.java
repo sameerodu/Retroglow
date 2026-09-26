@@ -90,11 +90,11 @@ public final class RetroGlowSound {
 
             if (t < 0.012) {
 
-                double transient =
+                double transientNoise =
                         Math.random() * 2.0 - 1.0;
 
                 signal +=
-                        transient
+                        transientNoise
                                 * 0.18
                                 * Math.exp(
                                         -t * 180.0
