@@ -18,15 +18,14 @@ public final class RetroGlowSound {
     private RetroGlowSound() {
     }
 
-    public static void playDetent(ContextHolder holder) {
+    public static void playDetent() {
+
         AUDIO_EXECUTOR.execute(() -> {
 
-            short[] sound = createDetent();
+            short[] sound =
+                    createDetent();
 
-            play(
-                    sound,
-                    holder
-            );
+            play(sound);
         });
     }
 
@@ -45,9 +44,6 @@ public final class RetroGlowSound {
             double t =
                     i / (double) SAMPLE_RATE;
 
-            /*
-             * Short low-frequency mechanical body.
-             */
             double body =
                     Math.sin(
                             2.0
@@ -56,9 +52,6 @@ public final class RetroGlowSound {
                                     * t
                     );
 
-            /*
-             * Higher metallic component.
-             */
             double metal =
                     Math.sin(
                             2.0
@@ -67,9 +60,6 @@ public final class RetroGlowSound {
                                     * t
                     );
 
-            /*
-             * Tiny irregular contact texture.
-             */
             double texture =
                     Math.sin(
                             2.0
@@ -78,20 +68,14 @@ public final class RetroGlowSound {
                                     * t
                     );
 
-            /*
-             * Short impact envelope.
-             */
-            double impact =
-                    Math.exp(
-                            -t * 42.0
-                    );
-
-            /*
-             * Slightly slower resonance underneath.
-             */
             double resonance =
                     Math.exp(
                             -t * 16.0
+                    );
+
+            double impact =
+                    Math.exp(
+                            -t * 42.0
                     );
 
             double signal =
@@ -105,9 +89,6 @@ public final class RetroGlowSound {
                             * 0.08
                             * impact;
 
-            /*
-             * Very short initial transient.
-             */
             if (t < 0.012) {
 
                 double transient =
@@ -121,9 +102,6 @@ public final class RetroGlowSound {
                                 );
             }
 
-            /*
-             * Gentle overall decay.
-             */
             signal *=
                     Math.exp(
                             -t * 8.0
@@ -149,8 +127,7 @@ public final class RetroGlowSound {
     }
 
     private static void play(
-            short[] samples,
-            ContextHolder holder) {
+            short[] samples) {
 
         AudioTrack track = null;
 
@@ -197,10 +174,15 @@ public final class RetroGlowSound {
             track.play();
 
             try {
+
                 Thread.sleep(140);
+
             } catch (InterruptedException e) {
+
                 Thread.currentThread().interrupt();
             }
+
+        } catch (Exception ignored) {
 
         } finally {
 
@@ -213,12 +195,6 @@ public final class RetroGlowSound {
 
                 track.release();
             }
-        }
-    }
-
-    public static final class ContextHolder {
-
-        public ContextHolder() {
         }
     }
 }
