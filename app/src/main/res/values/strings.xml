@@ -4,8 +4,10 @@
 
     <string name="app_name">RetroGlow</string>
 
-    <string name="retroglow_description">
-        Retro amber brightness control
-    </string>
+    <string name="retroglow_low_brightness">Low brightness</string>
+
+    <string name="retroglow_high_brightness">High brightness</string>
+
+    <string name="retroglow_brightness_control">Brightness control</string>
 
 </resources>
